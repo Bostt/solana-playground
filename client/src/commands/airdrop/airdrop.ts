@@ -20,8 +20,8 @@ export const airdrop = createCmd({
       optional: true,
       // TODO: Add `parse` value and remove this
       values: (token) => {
-        if (PgCommon.isInt(token)) return [token];
-        throw new Error("Amount must be an integer");
+        if (PgCommon.isFloat(token)) return [token];
+        throw new Error("Amount must be a number");
       },
     },
   ]),
@@ -32,7 +32,7 @@ export const airdrop = createCmd({
     }
 
     const amount = input.args.amount
-      ? parseInt(input.args.amount)
+      ? parseFloat(input.args.amount)
       : defaultAmount;
     PgTerminal.println(PgTerminal.info(`Airdropping ${amount} SOL...`));
 

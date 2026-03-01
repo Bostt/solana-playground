@@ -613,8 +613,7 @@ export class PgCommon {
     if (!floatRegex.test(str)) return false;
 
     const float = parseFloat(str);
-    if (isNaN(float)) return false;
-    return true;
+    return !isNaN(float);
   }
 
   /**
